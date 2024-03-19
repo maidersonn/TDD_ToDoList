@@ -1,2 +1,3 @@
 The goal is to create a todo list with TDD.
-Testing framework : Jest.
+Project with nodejs and express.
+Testing framework : Jest, Node test.

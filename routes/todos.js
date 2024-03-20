@@ -16,5 +16,7 @@ let todos = [
 router.get("/", (req, res) => {
   res.status(200).json(todos);
 });
-
+router.get("/:name", (req, res) => {
+  res.status(200).json();
+});
 module.exports = router;

@@ -1,6 +1,5 @@
 const request = require("supertest");
 const app = require("././app");
-//const server = require("./server");
 
 describe("GET /", () => {
   it("GET / should return status 200", () => {
@@ -19,5 +18,10 @@ describe("GET /", () => {
           ])
         );
       });
+  });
+});
+describe("GET /name", () => {
+  it("GET /name => should return status 200", () => {
+    return request(app).get("/dni").expect(200).expect("Content-Type", /json/);
   });
 });

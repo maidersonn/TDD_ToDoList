@@ -24,4 +24,16 @@ describe("GET /name", () => {
   it("GET /name => should return status 200", () => {
     return request(app).get("/dni").expect(200).expect("Content-Type", /json/);
   });
+  it("GET /name => should return object containing the name", () => {
+    return request(app)
+      .get("/dni")
+      .then((response) => {
+        expect(response.body).toEqual(
+          expect.objectContaining({
+            name: "dni",
+            description: expect.any(String),
+          })
+        );
+      });
+  });
 });

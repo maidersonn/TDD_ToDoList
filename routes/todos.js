@@ -17,6 +17,7 @@ router.get("/", (req, res) => {
   res.status(200).json(todos);
 });
 router.get("/:name", (req, res) => {
-  res.status(200).json();
+  const todo = todos.find((todo) => todo.name === String(req.params.name));
+  res.status(200).json(todo);
 });
 module.exports = router;

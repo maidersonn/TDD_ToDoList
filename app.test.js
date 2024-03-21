@@ -62,6 +62,25 @@ describe("POST", () => {
       .expect("Content-Type", /json/);
   });
 });
+describe("UPDATE", () => {
+  it("UPDATE /:name", () => {
+    return request(app)
+      .put("/dni")
+      .send({
+        name: "carne de conducir",
+      })
+      .expect(200)
+      .expect("Content-Type", /json/)
+      .then((response) => {
+        expect(response.body).toEqual(
+          expect.objectContaining({
+            name: "carne de conducir",
+            description: expect.any(String),
+          })
+        );
+      });
+  });
+});
 describe("DELETE", () => {
   it("DELETE /", () => {
     return request(app).delete("/").expect(204);

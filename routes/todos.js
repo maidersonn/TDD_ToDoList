@@ -23,7 +23,6 @@ router.get("/:name", (req, res) => {
 });
 router.post("/", (req, res) => {
   const todo = req.body;
-  console.log(todo.name);
   if (typeof todo.name !== "string" || typeof todo.description !== "string") {
     res.status(400).json({ message: "Validation Error" });
   }
@@ -36,12 +35,20 @@ router.delete("/", (_, res) => {
 });
 router.delete("/:name", (req, res) => {
   const todo = req.params.name;
+  todos.filter((element) => {
+    element.name === todo;
+  });
+  res.status(204).json();
+});
+router.put("/:name", (req, res) => {
+  const name = req.params.name;
   const newTodoName = req.body.name;
   todos.forEach((element) => {
-    if (element.name === todo.name) {
+    if (element.name === name) {
       element.name = newTodoName;
     }
   });
-  res.status(204).json();
+  const todo = todos.find((todo) => todo.name === newTodoName);
+  res.status(200).json(todo);
 });
 module.exports = router;

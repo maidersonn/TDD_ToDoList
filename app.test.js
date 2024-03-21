@@ -66,4 +66,7 @@ describe("DELETE", () => {
   it("DELETE /", () => {
     return request(app).delete("/").expect(204);
   });
+  it("DELETE /:name", () => {
+    return request(app).delete("/dni").expect(204);
+  });
 });

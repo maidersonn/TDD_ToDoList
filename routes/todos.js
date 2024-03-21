@@ -34,4 +34,14 @@ router.delete("/", (_, res) => {
   todos = [];
   res.status(204).json();
 });
+router.delete("/:name", (req, res) => {
+  const todo = req.params.name;
+  const newTodoName = req.body.name;
+  todos.forEach((element) => {
+    if (element.name === todo.name) {
+      element.name = newTodoName;
+    }
+  });
+  res.status(204).json();
+});
 module.exports = router;

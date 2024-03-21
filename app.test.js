@@ -39,6 +39,8 @@ describe("GET /:name", () => {
   it("GET /:name => should return 404 if item not found", () => {
     return request(app).get("/foo").expect(404);
   });
+});
+describe("POST", () => {
   it("POST /  => should create a new item", () => {
     return request(app)
       .post("/")
@@ -58,5 +60,10 @@ describe("GET /:name", () => {
       })
       .expect(400)
       .expect("Content-Type", /json/);
+  });
+});
+describe("DELETE", () => {
+  it("DELETE /", () => {
+    return request(app).delete("/").expect(204);
   });
 });

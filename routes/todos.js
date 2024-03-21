@@ -12,7 +12,7 @@ let todos = [
   },
 ];
 
-router.get("/", (req, res) => {
+router.get("/", (_, res) => {
   res.status(200).json(todos);
 });
 router.get("/:name", (req, res) => {
@@ -29,5 +29,9 @@ router.post("/", (req, res) => {
   }
   todos.push({ name: todo.name, description: todo.description });
   res.status(201).json();
+});
+router.delete("/", (_, res) => {
+  todos = [];
+  res.status(204).json();
 });
 module.exports = router;

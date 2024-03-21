@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const createError = require("http-errors");
 
 let todos = [
   {
@@ -18,6 +17,8 @@ router.get("/", (req, res) => {
 });
 router.get("/:name", (req, res) => {
   const todo = todos.find((todo) => todo.name === String(req.params.name));
-  res.status(200).json(todo);
+  todo
+    ? res.status(200).json(todo)
+    : res.status(404).json({ message: "Not found" });
 });
 module.exports = router;

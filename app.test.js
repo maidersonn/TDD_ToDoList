@@ -39,4 +39,24 @@ describe("GET /:name", () => {
   it("GET /:name => should return 404 if item not found", () => {
     return request(app).get("/foo").expect(404);
   });
+  it("POST /  => should create a new item", () => {
+    return request(app)
+      .post("/")
+      .send({
+        name: "korrika",
+        description: "Día 20 de marzo pasa la korrika por el pueblo",
+      })
+      .expect(201)
+      .expect("Content-Type", /json/);
+  });
+  it("POST / => should return 400 if property not string", () => {
+    return request(app)
+      .post("/")
+      .send({
+        name: undefined,
+        description: "js",
+      })
+      .expect(400)
+      .expect("Content-Type", /json/);
+  });
 });

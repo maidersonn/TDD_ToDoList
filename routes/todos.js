@@ -21,4 +21,13 @@ router.get("/:name", (req, res) => {
     ? res.status(200).json(todo)
     : res.status(404).json({ message: "Not found" });
 });
+router.post("/", (req, res) => {
+  const todo = req.body;
+  console.log(todo.name);
+  if (typeof todo.name !== "string" || typeof todo.description !== "string") {
+    res.status(400).json({ message: "Validation Error" });
+  }
+  todos.push({ name: todo.name, description: todo.description });
+  res.status(201).json();
+});
 module.exports = router;

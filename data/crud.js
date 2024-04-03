@@ -35,7 +35,7 @@ const getByName = async (db, { name }) => {
             FROM todo
             WHERE name=${name}
     `);
-    return result;
+    return result.length === 0 ? undefined : result[0];
   } catch (error) {
     console.error("Error at getByName query: ", error.message);
     throw error;

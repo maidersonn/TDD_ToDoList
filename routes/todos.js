@@ -17,8 +17,8 @@ module.exports = (db) => {
   router.get("/:name", async (req, res) => {
     const name = req.params.name;
     const todo = await getByName(db, { name: name });
-    if (todo[0]) {
-      res.status(200).json(todo[0]);
+    if (todo) {
+      res.status(200).json(todo);
     } else {
       res.status(404).json({ message: "Not found" });
     }
@@ -40,7 +40,7 @@ module.exports = (db) => {
   router.delete("/", async (_, res) => {
     await deleteAll(db);
     const todos = await getAll(db);
-    if (!todos[0]) {
+    if (todos.length === 0) {
       res.status(204).json();
     } else {
       res.status(500).json({ message: "Something went wrong" });
@@ -50,7 +50,7 @@ module.exports = (db) => {
     const todo = req.params.name;
     await deleteByName(db, { name: todo });
     const deletedTodo = await getByName(db, { name: todo });
-    if (!deletedTodo[0]) {
+    if (!deletedTodo) {
       res.status(204).json();
     } else {
       res.status(500).json({ message: "Something went wrong" });
@@ -61,7 +61,7 @@ module.exports = (db) => {
     const newTodoName = req.body.name;
     await updateByName(db, { name: name, newName: newTodoName });
     const todo = await getByName(db, { name: newTodoName });
-    res.status(200).json(todo[0]);
+    res.status(200).json(todo);
   });
   return router;
 };

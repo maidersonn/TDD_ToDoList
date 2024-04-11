@@ -8,8 +8,7 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "node src/api/server.js"
   },
   "author": "maider",
   "license": "ISC",

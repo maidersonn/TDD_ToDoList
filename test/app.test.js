@@ -1,6 +1,7 @@
 const request = require("supertest");
-const app = require("../app");
-const { seed, clean, create } = require("./dbForTest");
+const app = require("../src/api/app");
+const { seed, clean } = require("./dbForTest");
+const create = require("../scripts/createdb");
 
 beforeAll(async () => {
   await create();
@@ -69,7 +70,7 @@ describe("GET /", () => {
   });
 });
 describe("GET /:name", () => {
-  it("GET /name => should return status 200", () => {
+  it("GET /:name => should return status 200", () => {
     return request(app).get("/dni").expect(200).expect("Content-Type", /json/);
   });
   it("GET /:name => should return object containing the name and description", () => {
